@@ -5,6 +5,7 @@ const editNome = document.getElementById("editNome")
 const editEmail = document.getElementById("editEmail")
 const editPedido = document.getElementById("editPedido")
 let editingId = null
+let timerMensagem = null
 
 document.addEventListener("DOMContentLoaded", carregarPedidos)
 document.getElementById("refreshOrders").addEventListener("click", carregarPedidos)
@@ -100,15 +101,21 @@ async function apagarPedido(id) {
     if (!window.confirm("Deseja apagar este pedido?")) return
 
     try {
-        const response = await fetch(`/pedidos/${id}`, { method: "DELETE" })
+        const response = await fetch(`/pedidos/${id}`, { 
+            method: "DELETE" 
+        })
+
         const result = await response.json()
+
         if (!response.ok) {
             mostrarMensagem(result.mensagem || "Não foi possível apagar o pedido.", "ERROR")
             return
         }
 
         mostrarMensagem(result.mensagem || "Pedido apagado com sucesso.", "Sucesso")
+
         if (editingId === id) cancelarEdicao()
+
         await carregarPedidos()
     } catch (error) {
         console.error("Erro ao apagar pedido", error)

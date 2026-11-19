@@ -4,9 +4,12 @@ async function buscarPedidos(req, res) {
     try {
         const [rows] = await pool.execute("SELECT * FROM pedidos")
 
-        res.json(rows)
+        return res.json(rows)
     } catch (error) {
-        res.status(501).json({ mensagem: "Erro ao buscar pedidos" })
+        console.error('Erro interno: ', error)
+        return res.status(500).json({
+            mensagem: "Erro ao buscar pedidos"
+        })
     }
 }
 async function cadastrarPedidos(req, res) {
@@ -16,15 +19,21 @@ async function cadastrarPedidos(req, res) {
         const pedido = (req.body.pedido || "").trim()
 
         if (!nome || !email || !pedido) {
-            res.json("Todas os campos são obrigatórios")
+            return res.status(400).json({
+                erro: "Todos os campos são obrigatórios"
+            })
         }
 
         await pool.execute("INSERT INTO pedidos (nome, email, pedido)VALUES( ?, ?, ?)", [nome, email, pedido])
 
-        res.json({ mensagem: "Pedido cadastrado com sucesso!" })
-    } catch (e) {
-        res.status(501).json({ mensagem: "Erro ao buscar pedidos" })
-        console.log(e)
+        return res.status(200).json({
+            mensagem: "Pedido cadastrado com sucesso!"
+        })
+    } catch (error) {
+        console.error('Erro interno: ', error)
+        return res.status(500).json({
+            mensagem: "Erro ao buscar pedidos"
+        })
     }
 }
 async function atualizarPedido(req, res) {
@@ -36,15 +45,21 @@ async function atualizarPedido(req, res) {
         const pedido = (req.body.pedido || "").trim()
 
         if (!nome || !email || !pedido) {
-            res.json("Todas os campos são obrigatórios")
+            return res.status(400).json({
+                erro: "Todos os campos são obrigatórios"
+            })
         }
+
         await pool.execute("UPDATE pedidos SET nome = ?, email = ?, pedido = ? WHERE id = ?", [nome, email, pedido, id])
 
-        res.json({ mensagem: "Pedido atualizado com sucesso!" })
-
+        return res.status(200).json({
+            mensagem: "Pedido atualizado com sucesso!"
+        })
     } catch (error) {
-        res.status(501).json({ mensagem: "Erro ao alterar pedidos" })
-
+        console.error('Erro interno: ', error)
+        return res.status(500).json({
+            mensagem: "Erro ao alterar pedidos"
+        })
     }
 }
 
@@ -54,11 +69,15 @@ async function deletarPedido(req, res) {
 
         await pool.execute("DELETE FROM pedidos WHERE id = ?", [id])
 
-        res.json({ mensagem: "Pedido deletado com sucesso!" })
-
-    } catch (e) {
-        res.status(501).json({mensagem: "Erro ao buscar pedidos"})
-        console.error(e)
+        return res.status(200).json({ 
+            mensagem: "Pedido deletado com sucesso!"
+        })
+    } catch (error) {
+        console.error('Erro interno: ', error)
+        return res.status(500).json({
+            mensagem: "Erro ao buscar pedidos"
+        })
     }
 }
+
 export { buscarPedidos, cadastrarPedidos, atualizarPedido, deletarPedido}
