@@ -1,0 +1,30 @@
+# =============================================
+#               Doces da Vovó
+# =============================================
+
+- O projeto Doces da Vovó foi desenvolvido para 
+ ajudar uma empreendedora de mais idade que 
+ tinha dificuldades para vender seus doces. 
+ Para isso, criamos um sistema que a ajudasse 
+ a realizar suas vendas de forma eficiente e 
+ prática, além de permitir que ela gerenciasse 
+ seu negócio de maneira simples e rápida.
+
+# =============================================
+#            Execução do Sistema
+# =============================================
+
+Para executar o sistema, siga os passos abaixo:
+
+1. Abra o terminal na pasta raiz do projeto.
+2. Instale as dependências necessárias:
+
+- npm install express --strict-ssl=false
+- npm install mysql2 --strict-ssl=false
+- npm install dotenv --strict-ssl=false
+
+3. Após a instalação, inicie o servidor:
+
+- node server.js
+
+Pronto! O servidor estará em execução.

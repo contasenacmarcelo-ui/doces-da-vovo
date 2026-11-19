@@ -130,4 +130,9 @@ async function sair() {
 function mostrarMensagem(text, type) {
     adminMessage.textContent = text
     adminMessage.dataset.tipo = type
+     clearTimeout(timerMensagem)
+     timerMensagem = setTimeout(() => {
+        adminMessage.textContent = ''
+        adminMessage.removeAttribute('data-tipo')
+    }, 6000)
 }
