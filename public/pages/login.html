@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Login administrativo | Doces da Vovó</title>
+</head>
+<body>
+    <nav id="header">
+        <h1>Área administrativa</h1>
+    </nav>
+    <form id="loginForm" class="login-form">
+        <label for="usuario">Usuário</label>
+        <input id="usuario" name="usuario" type="text" autocomplete="username" required>
+        <label for="senha">Senha</label>
+        <input id="senha" name="senha" type="password" autocomplete="current-password" required>
+        <button type="submit">Entrar</button>
+        <p id="loginMessage" role="alert"></p>
+    </form>
+    <script src="../js/login.js"></script>
+</body>
+</html>

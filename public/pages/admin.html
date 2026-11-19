@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Administração | Doces da Vovó</title>
+</head>
+<body>
+    <nav id="header">
+        <h1>Pedidos</h1>
+    </nav>
+    <main class="admin-page">
+        <div class="admin-toolbar">
+            <a href="/">Voltar à página inicial</a>
+            <div>
+                <button id="refreshOrders" type="button">Atualizar lista</button>
+                <button id="logout" type="button">Sair</button>
+            </div>
+        </div>
+        <p id="adminMessage" role="status"></p>
+        <form id="editForm" hidden>
+            <h2>Editar pedido</h2>
+            <label for="editNome">Nome</label>
+            <input id="editNome" name="nome" required>
+            <label for="editEmail">Email</label>
+            <input id="editEmail" name="email" type="email" required>
+            <label for="editPedido">Pedido</label>
+            <textarea id="editPedido" name="pedido" required></textarea>
+            <button type="submit">Salvar alterações</button>
+            <button id="cancelEdit" type="button">Cancelar</button>
+        </form>
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Pedido</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersList"></tbody>
+            </table>
+        </div>
+    </main>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
