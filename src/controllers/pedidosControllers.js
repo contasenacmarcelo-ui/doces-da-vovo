@@ -1,5 +1,25 @@
 import pool from "../config/db.js"
 
+async function criarTabelaPedidos() {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS pedidos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nome VARCHAR(100) NOT NULL,
+        email VARCHAR(150) NOT NULL,
+        pedido VARCHAR(255) NOT NULL,
+        criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        atualizado TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
+    console.log("Tabela 'pedidos' pronta no Filess.io!");
+  } catch (erro) {
+    console.error("Erro ao criar tabela:", erro);
+  }
+}
+
+criarTabelaPedidos();
+
 async function buscarPedidos(req, res) {
     try {
         const [rows] = await pool.execute("SELECT * FROM pedidos")
