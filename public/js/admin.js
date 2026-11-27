@@ -8,7 +8,6 @@ let editingId = null
 let timerMensagem = null
 
 document.addEventListener("DOMContentLoaded", carregarPedidos)
-document.getElementById("refreshOrders").addEventListener("click", carregarPedidos)
 document.getElementById("cancelEdit").addEventListener("click", cancelarEdicao)
 document.getElementById("logout").addEventListener("click", sair)
 
@@ -77,6 +76,7 @@ function adicionarPedido(order) {
     deleteButton.type = "button"
     deleteButton.textContent = "Apagar"
     deleteButton.addEventListener("click", () => apagarPedido(order.id))
+    deleteButton.className = "excluir"
     actions.append(editButton, deleteButton)
     row.appendChild(actions)
     ordersList.appendChild(row)
